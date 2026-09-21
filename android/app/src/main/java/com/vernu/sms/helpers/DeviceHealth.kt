@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.os.Build
 import com.vernu.sms.AppConstants
-import com.vernu.sms.TextbeeUtils
+import com.vernu.sms.IDGroupUtils
 
 data class DeviceHealthSnapshot(
     val hasSendSmsPermission: Boolean,
@@ -40,7 +40,7 @@ object DeviceHealth {
     private class AndroidProbe(private val context: Context) : DeviceHealthProbe {
         override val sdkInt: Int get() = Build.VERSION.SDK_INT
         override fun isPermissionGranted(permission: String) =
-            TextbeeUtils.isPermissionGranted(context, permission)
+            IDGroupUtils.isPermissionGranted(context, permission)
         override fun prefBoolean(key: String, default: Boolean) =
             SharedPreferenceHelper.getSharedPreferenceBoolean(context, key, default)
     }

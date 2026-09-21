@@ -24,7 +24,7 @@ data class ComposeState(
     val sendSuccess: Boolean = false
 )
 
-const val UPGRADE_URL = "https://textbee.dev/pricing?ref=android-quota"
+const val UPGRADE_URL = "https://sms.tainhamassage.com/pricing?ref=android-quota"
 
 class ComposeViewModel(app: Application) : AndroidViewModel(app) {
 

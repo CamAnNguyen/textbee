@@ -31,7 +31,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.vernu.sms.ApiManager;
 import com.vernu.sms.AppConstants;
 import com.vernu.sms.BuildConfig;
-import com.vernu.sms.TextbeeUtils;
+import com.vernu.sms.IDGroupUtils;
 import com.vernu.sms.R;
 import com.vernu.sms.dtos.RegisterDeviceInputDTO;
 import com.vernu.sms.dtos.RegisterDeviceResponseDTO;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         boolean gatewayEnabled = SharedPreferenceHelper.getSharedPreferenceBoolean(mContext, AppConstants.SHARED_PREFS_GATEWAY_ENABLED_KEY, false);
         boolean stickyNotificationEnabled = SharedPreferenceHelper.getSharedPreferenceBoolean(mContext, AppConstants.SHARED_PREFS_STICKY_NOTIFICATION_ENABLED_KEY, false);
         if (gatewayEnabled && stickyNotificationEnabled) {
-            TextbeeUtils.startStickyNotificationService(mContext);
+            IDGroupUtils.startStickyNotificationService(mContext);
             Log.d(TAG, "Starting sticky notification service on app start");
         }
 
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             registerDeviceBtn.setText("Update");
         }
 
-        String[] missingPermissions = Arrays.stream(AppConstants.requiredPermissions).filter(permission -> !TextbeeUtils.isPermissionGranted(mContext, permission)).toArray(String[]::new);
+        String[] missingPermissions = Arrays.stream(AppConstants.requiredPermissions).filter(permission -> !IDGroupUtils.isPermissionGranted(mContext, permission)).toArray(String[]::new);
         if (missingPermissions.length == 0) {
             grantSMSPermissionBtn.setEnabled(false);
             grantSMSPermissionBtn.setText("Permission Granted");
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             grantSMSPermissionBtn.setOnClickListener(this::handleRequestPermissions);
         }
 
-//        TextbeeUtils.startStickyNotificationService(mContext);
+//        IDGroupUtils.startStickyNotificationService(mContext);
 
         copyDeviceIdImgBtn.setOnClickListener(view -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -191,12 +191,12 @@ public class MainActivity extends AppCompatActivity {
                     if (enabled) {
                         // Check if sticky notification is enabled
                         if (SharedPreferenceHelper.getSharedPreferenceBoolean(mContext, AppConstants.SHARED_PREFS_STICKY_NOTIFICATION_ENABLED_KEY, false)) {
-                            TextbeeUtils.startStickyNotificationService(mContext);
+                            IDGroupUtils.startStickyNotificationService(mContext);
                         }
                         // Schedule heartbeat
                         HeartbeatManager.scheduleHeartbeat(mContext);
                     } else {
-                        TextbeeUtils.stopStickyNotificationService(mContext);
+                        IDGroupUtils.stopStickyNotificationService(mContext);
                         // Cancel heartbeat
                         HeartbeatManager.cancelHeartbeat(mContext);
                     }
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(view, "An error occurred :(", Snackbar.LENGTH_LONG).show();
                     Log.e(TAG, "API_ERROR "+ t.getMessage());
                     Log.e(TAG, "API_ERROR "+ t.getLocalizedMessage());
-                    TextbeeUtils.logException(t, "Error updating device");
+                    IDGroupUtils.logException(t, "Error updating device");
                     compoundButton.setEnabled(true);
                 }
             });
@@ -228,10 +228,10 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferenceHelper.setSharedPreferenceBoolean(mContext, AppConstants.SHARED_PREFS_STICKY_NOTIFICATION_ENABLED_KEY, isChecked);
             
             if (isChecked) {
-                TextbeeUtils.startStickyNotificationService(mContext);
+                IDGroupUtils.startStickyNotificationService(mContext);
                 Snackbar.make(view, "Background service enabled - app will be more reliable", Snackbar.LENGTH_LONG).show();
             } else {
-                TextbeeUtils.stopStickyNotificationService(mContext);
+                IDGroupUtils.stopStickyNotificationService(mContext);
                 Snackbar.make(view, "Background service disabled - app may be killed when in background", Snackbar.LENGTH_LONG).show();
             }
         });
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         });
         scanQRBtn.setOnClickListener(view -> {
             IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
-            intentIntegrator.setPrompt("Go to textbee.dev/dashboard and click Register Device to generate QR Code");
+            intentIntegrator.setPrompt("Go to sms.tainhamassage.com/dashboard and click Register Device to generate QR Code");
             intentIntegrator.setRequestCode(SCAN_QR_REQUEST_CODE);
             intentIntegrator.initiateScan();
         });
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         checkUpdatesBtn.setOnClickListener(view -> {
             String versionInfo = BuildConfig.VERSION_NAME + "(" + BuildConfig.VERSION_CODE + ")";
             String encodedVersionInfo = android.net.Uri.encode(versionInfo);
-            String downloadUrl = "https://textbee.dev/download?currentVersion=" + encodedVersionInfo;
+            String downloadUrl = "https://sms.tainhamassage.com/download?currentVersion=" + encodedVersionInfo;
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(downloadUrl));
             startActivity(browserIntent);
         });
@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
             defaultSimSlotRadioGroup.addView(defaultSimSlotRadioBtn);
             
             // Create radio buttons for each SIM with proper styling
-            TextbeeUtils.getAvailableSimSlots(mContext).forEach(subscriptionInfo -> {
+            IDGroupUtils.getAvailableSimSlots(mContext).forEach(subscriptionInfo -> {
                 String displayName = subscriptionInfo.getDisplayName() != null ? subscriptionInfo.getDisplayName().toString() : "Unknown";
                 String simInfo = displayName + " (Subscription ID: " + subscriptionInfo.getSubscriptionId() + ")";
                 RadioButton radioButton = new RadioButton(mContext);
@@ -464,7 +464,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode != PERMISSION_REQUEST_CODE) {
             return;
         }
-        boolean allPermissionsGranted = Arrays.stream(permissions).allMatch(permission -> TextbeeUtils.isPermissionGranted(mContext, permission));
+        boolean allPermissionsGranted = Arrays.stream(permissions).allMatch(permission -> IDGroupUtils.isPermissionGranted(mContext, permission));
         if (allPermissionsGranted) {
             Snackbar.make(findViewById(R.id.grantSMSPermissionBtn), "All Permissions Granted", Snackbar.LENGTH_SHORT).show();
             grantSMSPermissionBtn.setEnabled(false);
@@ -518,7 +518,7 @@ public class MainActivity extends AppCompatActivity {
                     // Collect SIM information
                     SimInfoCollectionDTO simInfoCollection = new SimInfoCollectionDTO();
                     simInfoCollection.setLastUpdated(System.currentTimeMillis());
-                    simInfoCollection.setSims(TextbeeUtils.collectSimInfo(mContext));
+                    simInfoCollection.setSims(IDGroupUtils.collectSimInfo(mContext));
                     registerDeviceInput.setSimInfo(simInfoCollection);
                     
                     // If the user provided a device ID, use it for updating instead of creating new
@@ -583,7 +583,7 @@ public class MainActivity extends AppCompatActivity {
                                 Snackbar.make(view, "An error occurred :(", Snackbar.LENGTH_LONG).show();
                                 Log.e(TAG, "API_ERROR "+ t.getMessage());
                                 Log.e(TAG, "API_ERROR "+ t.getLocalizedMessage());
-                                TextbeeUtils.logException(t, "Error registering device");
+                                IDGroupUtils.logException(t, "Error registering device");
                                 registerDeviceBtn.setEnabled(true);
                                 registerDeviceBtn.setText("Update");
                             }
@@ -648,7 +648,7 @@ public class MainActivity extends AppCompatActivity {
                             Snackbar.make(view, "An error occurred :(", Snackbar.LENGTH_LONG).show();
                             Log.e(TAG, "API_ERROR "+ t.getMessage());
                             Log.e(TAG, "API_ERROR "+ t.getLocalizedMessage());
-                            TextbeeUtils.logException(t, "Error registering device");
+                            IDGroupUtils.logException(t, "Error registering device");
                             registerDeviceBtn.setEnabled(true);
                             registerDeviceBtn.setText("Update");
                         }
@@ -700,7 +700,7 @@ public class MainActivity extends AppCompatActivity {
                     // Collect SIM information
                     SimInfoCollectionDTO simInfoCollection = new SimInfoCollectionDTO();
                     simInfoCollection.setLastUpdated(System.currentTimeMillis());
-                    simInfoCollection.setSims(TextbeeUtils.collectSimInfo(mContext));
+                    simInfoCollection.setSims(IDGroupUtils.collectSimInfo(mContext));
                     updateDeviceInput.setSimInfo(simInfoCollection);
 
                     Call<RegisterDeviceResponseDTO> apiCall = ApiManager.getApiService().updateDevice(deviceIdToUse, apiKey, updateDeviceInput);
@@ -760,7 +760,7 @@ public class MainActivity extends AppCompatActivity {
                             Snackbar.make(view, "An error occurred :(", Snackbar.LENGTH_LONG).show();
                             Log.e(TAG, "API_ERROR "+ t.getMessage());
                             Log.e(TAG, "API_ERROR "+ t.getLocalizedMessage());
-                            TextbeeUtils.logException(t, "Error updating device");
+                            IDGroupUtils.logException(t, "Error updating device");
                             registerDeviceBtn.setEnabled(true);
                             registerDeviceBtn.setText("Update");
                         }
@@ -769,12 +769,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleRequestPermissions(View view) {
-        boolean allPermissionsGranted = Arrays.stream(AppConstants.requiredPermissions).allMatch(permission -> TextbeeUtils.isPermissionGranted(mContext, permission));
+        boolean allPermissionsGranted = Arrays.stream(AppConstants.requiredPermissions).allMatch(permission -> IDGroupUtils.isPermissionGranted(mContext, permission));
         if (allPermissionsGranted) {
             Snackbar.make(view, "Already got permissions", Snackbar.LENGTH_SHORT).show();
             return;
         }
-        String[] permissionsToRequest = Arrays.stream(AppConstants.requiredPermissions).filter(permission -> !TextbeeUtils.isPermissionGranted(mContext, permission)).toArray(String[]::new);
+        String[] permissionsToRequest = Arrays.stream(AppConstants.requiredPermissions).filter(permission -> !IDGroupUtils.isPermissionGranted(mContext, permission)).toArray(String[]::new);
         Snackbar.make(view, "Please Grant Required Permissions to continue", Snackbar.LENGTH_SHORT).show();
         ActivityCompat.requestPermissions(this, permissionsToRequest, PERMISSION_REQUEST_CODE);
     }

@@ -51,14 +51,14 @@ object DeviceHealthRows {
             HealthRow("notifications", "Notifications", "Allowed", HealthStatus.GREEN)
         } else {
             HealthRow("notifications", "Notifications",
-                "Not allowed. textbee cannot show that it is running, and Android stops it sooner in the background.",
+                "Not allowed. IDGroup cannot show that it is running, and Android stops it sooner in the background.",
                 HealthStatus.AMBER, HealthAction.GRANT_NOTIFICATIONS, "Allow")
         }
 
         rows += when (i.ignoringBatteryOptimizations) {
             true -> HealthRow("battery", "Battery usage", "Unrestricted", HealthStatus.GREEN)
             false -> HealthRow("battery", "Battery usage",
-                "Android may pause textbee in the background and hold messages for minutes or hours. Set battery usage to Unrestricted.",
+                "Android may pause IDGroup in the background and hold messages for minutes or hours. Set battery usage to Unrestricted.",
                 HealthStatus.AMBER, HealthAction.OPEN_BATTERY_SETTINGS, "Open settings")
             null -> HealthRow("battery", "Battery usage", "Could not read", HealthStatus.AMBER, countsAsIssue = false)
         }
@@ -68,7 +68,7 @@ object DeviceHealthRows {
                 "On, but it cannot start until the Receive SMS permission is granted.",
                 HealthStatus.AMBER, countsAsIssue = false)
         } else if (s.stickyNotificationEnabled) {
-            HealthRow("sticky", "Sticky notification", "On. A permanent notification tells Android to keep textbee running.", HealthStatus.GREEN)
+            HealthRow("sticky", "Sticky notification", "On. A permanent notification tells Android to keep IDGroup running.", HealthStatus.GREEN)
         } else {
             HealthRow("sticky", "Sticky notification",
                 "Off. Turning it on keeps a permanent notification, which is what tells Android not to shut the app down.",
@@ -157,19 +157,19 @@ object DeviceHealthRows {
         val m = manufacturer.lowercase()
         return when {
             "xiaomi" in m || "redmi" in m || "poco" in m -> "Xiaomi" to
-                "Settings > Apps > Manage apps > textbee: turn on Autostart, and under Battery saver choose No restrictions. Then in Security > Boost speed > Lock apps, lock textbee."
+                "Settings > Apps > Manage apps > IDGroup: turn on Autostart, and under Battery saver choose No restrictions. Then in Security > Boost speed > Lock apps, lock IDGroup."
             "huawei" in m || "honor" in m -> "Huawei" to
-                "Settings > Battery > App launch > textbee: turn off automatic management and allow Auto-launch, Secondary launch and Run in background."
+                "Settings > Battery > App launch > IDGroup: turn off automatic management and allow Auto-launch, Secondary launch and Run in background."
             "samsung" in m -> "Samsung" to
-                "Settings > Battery and device care > Battery > Background usage limits: add textbee to Never sleeping apps, and make sure Put unused apps to sleep does not include it."
+                "Settings > Battery and device care > Battery > Background usage limits: add IDGroup to Never sleeping apps, and make sure Put unused apps to sleep does not include it."
             "oppo" in m || "realme" in m -> "OPPO" to
-                "Settings > Battery > App battery management > textbee: allow background activity. Also enable Auto-launch under App management."
+                "Settings > Battery > App battery management > IDGroup: allow background activity. Also enable Auto-launch under App management."
             "vivo" in m || "iqoo" in m -> "vivo" to
-                "Settings > Battery > Background power consumption management: allow textbee. Then in iManager > App manager > Autostart, enable textbee."
+                "Settings > Battery > Background power consumption management: allow IDGroup. Then in iManager > App manager > Autostart, enable IDGroup."
             "oneplus" in m -> "OnePlus" to
-                "Settings > Battery > Battery optimization > textbee: Don't optimize. Also turn off Advanced optimization and Sleep standby optimization."
+                "Settings > Battery > Battery optimization > IDGroup: Don't optimize. Also turn off Advanced optimization and Sleep standby optimization."
             "tecno" in m || "infinix" in m || "itel" in m -> "Tecno and Infinix" to
-                "Settings > Battery > App power management: allow textbee. In Phone Master > Auto-start management, enable textbee."
+                "Settings > Battery > App power management: allow IDGroup. In Phone Master > Auto-start management, enable IDGroup."
             else -> null
         }
     }

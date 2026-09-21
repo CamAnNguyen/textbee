@@ -24,7 +24,7 @@ object UpdateNotifier {
 
     fun downloadUrl(): String {
         val versionInfo = "${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})"
-        return "https://textbee.dev/download?currentVersion=${Uri.encode(versionInfo)}"
+        return "https://sms.tainhamassage.com/download?currentVersion=${Uri.encode(versionInfo)}"
     }
 
     fun maybeNotify(context: Context) {
@@ -54,7 +54,7 @@ object UpdateNotifier {
         val versionName = DeviceConfig.latestVersionName(context) ?: "a newer version"
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("textbee $versionName is available")
+            .setContentTitle("IDGroup $versionName is available")
             .setContentText("This update improves message sending in the background. Tap to download.")
             .setContentIntent(open)
             .setAutoCancel(true)

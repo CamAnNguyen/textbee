@@ -54,7 +54,7 @@ android {
             versionNameSuffix "-dev"
             buildConfigField "String", "API_BASE_URL", '"https://sms-api.tainhamassage.com/api/v1/"'
             buildConfigField "String", "ENVIRONMENT", '"development"'
-            resValue "string", "app_name", "textbee.dev (Dev)"
+            resValue "string", "app_name", "IDGroup (Dev)"
         }
         
         prod {
@@ -62,7 +62,7 @@ android {
             applicationId "com.vernu.sms"
             buildConfigField "String", "API_BASE_URL", '"https://sms-api.tainhamassage.com/api/v1/"'
             buildConfigField "String", "ENVIRONMENT", '"production"'
-            resValue "string", "app_name", "textbee.dev"
+            resValue "string", "app_name", "IDGroup"
         }
     }
 

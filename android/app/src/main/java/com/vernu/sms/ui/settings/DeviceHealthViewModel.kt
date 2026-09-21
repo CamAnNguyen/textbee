@@ -7,7 +7,7 @@ import android.os.PowerManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.vernu.sms.AppConstants
-import com.vernu.sms.TextbeeUtils
+import com.vernu.sms.IDGroupUtils
 import com.vernu.sms.helpers.DeviceHealth
 import com.vernu.sms.helpers.DeviceHealthRows
 import com.vernu.sms.helpers.HealthInputs
@@ -56,7 +56,7 @@ class DeviceHealthViewModel(app: Application) : AndroidViewModel(app) {
                     ) ?: ""
                     HeartbeatHelper.sendHeartbeat(context, deviceId, apiKey)
                 } catch (e: Exception) {
-                    TextbeeUtils.logException(e, "Manual heartbeat failed")
+                    IDGroupUtils.logException(e, "Manual heartbeat failed")
                     false
                 }
             }
@@ -70,10 +70,10 @@ class DeviceHealthViewModel(app: Application) : AndroidViewModel(app) {
             context, AppConstants.SHARED_PREFS_STICKY_NOTIFICATION_ENABLED_KEY, enabled
         )
         try {
-            if (enabled) TextbeeUtils.startStickyNotificationService(context)
-            else TextbeeUtils.stopStickyNotificationService(context)
+            if (enabled) IDGroupUtils.startStickyNotificationService(context)
+            else IDGroupUtils.stopStickyNotificationService(context)
         } catch (e: Exception) {
-            TextbeeUtils.logException(e, "Sticky notification toggle from health screen failed")
+            IDGroupUtils.logException(e, "Sticky notification toggle from health screen failed")
         }
         refresh()
     }

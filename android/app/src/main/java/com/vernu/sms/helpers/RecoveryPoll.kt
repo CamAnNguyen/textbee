@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.vernu.sms.ApiManager
 import com.vernu.sms.AppConstants
-import com.vernu.sms.TextbeeUtils
+import com.vernu.sms.IDGroupUtils
 import com.vernu.sms.workers.SmsSendWorker
 
 // Asks the server for messages whose push never arrived and hands them to
@@ -64,7 +64,7 @@ object RecoveryPoll {
             DeviceLog.log(context, "recovery_poll", "$reason: ${messages.size} message(s)")
             enqueued
         } catch (e: Exception) {
-            TextbeeUtils.logException(e, "Recovery poll failed")
+            IDGroupUtils.logException(e, "Recovery poll failed")
             0
         }
     }

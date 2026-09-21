@@ -23,14 +23,14 @@ import com.vernu.sms.activities.MainActivity
 import com.vernu.sms.helpers.SharedPreferenceHelper
 import com.vernu.sms.ui.main.NewMainActivity
 import com.vernu.sms.ui.onboarding.OnboardingActivity
-import com.vernu.sms.ui.theme.TextbeeTheme
+import com.vernu.sms.ui.theme.IDGroupTheme
 
 class SplashActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TextbeeTheme {
+            IDGroupTheme {
                 SplashContent()
             }
         }
@@ -70,7 +70,7 @@ private fun SplashContent() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "textbee",
+                text = "IDGroup",
                 style = MaterialTheme.typography.headlineLarge,
                 color = Color.White,
                 fontWeight = FontWeight.Bold

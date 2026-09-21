@@ -14,7 +14,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.vernu.sms.ApiManager
 import com.vernu.sms.AppConstants
 import com.vernu.sms.BuildConfig
-import com.vernu.sms.TextbeeUtils
+import com.vernu.sms.IDGroupUtils
 import com.vernu.sms.dtos.HeartbeatInputDTO
 import com.vernu.sms.dtos.SimInfoCollectionDTO
 import java.io.IOException
@@ -141,7 +141,7 @@ object HeartbeatHelper {
             // SIM info
             heartbeatInput.simInfo = SimInfoCollectionDTO().apply {
                 lastUpdated = System.currentTimeMillis()
-                sims = TextbeeUtils.collectSimInfo(context)
+                sims = IDGroupUtils.collectSimInfo(context)
             }
 
             // Send heartbeat (blocking)
@@ -179,7 +179,7 @@ object HeartbeatHelper {
             // detail names the exception rather than guessing which part failed.
             // JsonSyntaxException here means the reply itself could not be read.
             DeviceLog.log(context, "heartbeat_failed", "error: ${e.javaClass.simpleName}")
-            TextbeeUtils.logException(e, "Heartbeat failed")
+            IDGroupUtils.logException(e, "Heartbeat failed")
             false
         }
     }

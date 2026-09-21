@@ -8,7 +8,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.vernu.sms.ApiManagerKt
 import com.vernu.sms.AppConstants
 import com.vernu.sms.BuildConfig
-import com.vernu.sms.TextbeeUtils
+import com.vernu.sms.IDGroupUtils
 import com.vernu.sms.dtos.RegisterDeviceInputDTO
 import com.vernu.sms.dtos.SimInfoCollectionDTO
 import com.vernu.sms.helpers.HeartbeatManager
@@ -95,7 +95,7 @@ class OnboardingViewModel : ViewModel() {
                 val fcmToken = getFcmToken()
                 val collectedSimInfo = SimInfoCollectionDTO().apply {
                     lastUpdated = System.currentTimeMillis()
-                    sims = TextbeeUtils.collectSimInfo(context)
+                    sims = IDGroupUtils.collectSimInfo(context)
                 }
                 val input = RegisterDeviceInputDTO().apply {
                     this.fcmToken = fcmToken
@@ -179,7 +179,7 @@ class OnboardingViewModel : ViewModel() {
                     else -> "Something went wrong. Please try again."
                 }
                 _state.update { it.copy(isLoading = false, errorMessage = message) }
-                TextbeeUtils.logException(e, "Onboarding device registration failed")
+                IDGroupUtils.logException(e, "Onboarding device registration failed")
             }
         }
     }

@@ -14,7 +14,7 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanOptions
 import com.vernu.sms.ui.main.NewMainActivity
 import com.vernu.sms.ui.onboarding.screens.*
-import com.vernu.sms.ui.theme.TextbeeTheme
+import com.vernu.sms.ui.theme.IDGroupTheme
 
 class OnboardingActivity : ComponentActivity() {
 
@@ -30,14 +30,14 @@ class OnboardingActivity : ComponentActivity() {
         }
 
         setContent {
-            TextbeeTheme {
+            IDGroupTheme {
                 val navController = rememberNavController()
                 OnboardingNavGraph(
                     navController = navController,
                     viewModel = viewModel,
                     onScanQr = {
                         qrLauncher.launch(ScanOptions().apply {
-                            setPrompt("Scan the QR code from textbee.dev/dashboard")
+                            setPrompt("Scan the QR code from sms.tainhamassage.com/dashboard")
                             setBeepEnabled(true)
                             setOrientationLocked(false)
                         })

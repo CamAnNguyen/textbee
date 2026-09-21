@@ -230,7 +230,7 @@ fun SettingsScreen(
             SettingsRow(
                 icon = Icons.Default.AutoAwesome,
                 title = "About",
-                subtitle = "textbee.dev",
+                subtitle = "IDGroup",
                 onClick = { showAboutDialog = true },
                 trailing = {
                     Icon(Icons.Default.ChevronRight, contentDescription = null,
@@ -243,7 +243,7 @@ fun SettingsScreen(
                 title = "Check for Updates",
                 onClick = {
                     val versionInfo = "${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})"
-                    val url = "https://textbee.dev/download?currentVersion=${Uri.encode(versionInfo)}"
+                    val url = "https://sms.tainhamassage.com/download?currentVersion=${Uri.encode(versionInfo)}"
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 },
                 trailing = {
@@ -258,7 +258,7 @@ fun SettingsScreen(
                 icon = Icons.Default.SupportAgent,
                 title = "Get Support",
                 onClick = {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://app.textbee.dev/dashboard/account/get-support")))
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sms.tainhamassage.com/dashboard/account/get-support")))
                 },
                 trailing = {
                     Icon(Icons.Default.OpenInBrowser, contentDescription = null,
@@ -271,7 +271,7 @@ fun SettingsScreen(
                 title = "Join our Discord",
                 subtitle = "Get help from the community",
                 onClick = {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://textbee.dev/discord")))
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sms.tainhamassage.com/discord")))
                 },
                 trailing = {
                     Icon(Icons.Default.OpenInBrowser, contentDescription = null,
@@ -281,20 +281,20 @@ fun SettingsScreen(
 
             SettingsRow(
                 icon = Icons.Default.Share,
-                title = "Share textbee",
+                title = "Share IDGroup",
                 subtitle = "Help spread the word",
                 onClick = {
-                    val shareText = "i've been using textbee.dev to send SMS via API from my own phone, " +
+                    val shareText = "i've been using sms.tainhamassage.com to send SMS via API from my own phone, " +
                         "no Twilio or paid services needed. works great for automations, alerts, " +
                         "notifications, or anything that needs programmatic SMS. open source and free to start\n\n" +
-                        "https://textbee.dev"
+                        "https://sms.tainhamassage.com"
                     context.startActivity(
                         Intent.createChooser(
                             Intent(Intent.ACTION_SEND).apply {
                                 type = "text/plain"
                                 putExtra(Intent.EXTRA_TEXT, shareText)
                             },
-                            "Share textbee"
+                            "Share IDGroup"
                         )
                     )
                 }
@@ -306,7 +306,7 @@ fun SettingsScreen(
                 icon = Icons.Default.Gavel,
                 title = "Terms of Service",
                 onClick = {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://textbee.dev/terms-of-service")))
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sms.tainhamassage.com/terms-of-service")))
                 },
                 trailing = {
                     Icon(Icons.Default.OpenInBrowser, contentDescription = null,
@@ -318,7 +318,7 @@ fun SettingsScreen(
                 icon = Icons.Default.Policy,
                 title = "Privacy Policy",
                 onClick = {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://textbee.dev/privacy-policy")))
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sms.tainhamassage.com/privacy-policy")))
                 },
                 trailing = {
                     Icon(Icons.Default.OpenInBrowser, contentDescription = null,
@@ -391,7 +391,7 @@ fun SettingsScreen(
         AlertDialog(
             onDismissRequest = { showAboutDialog = false },
             title = {
-                Text("textbee.dev", fontWeight = FontWeight.Bold)
+                Text("IDGroup", fontWeight = FontWeight.Bold)
             },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -404,14 +404,14 @@ fun SettingsScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedButton(
                             onClick = {
-                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://textbee.dev")))
+                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sms.tainhamassage.com")))
                             }
                         ) {
-                            Text("textbee.dev")
+                            Text("IDGroup")
                         }
                         OutlinedButton(
                             onClick = {
-                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/textbee/textbee")))
+                                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/CamAnNguyen/textbee")))
                             }
                         ) {
                             Text("GitHub")

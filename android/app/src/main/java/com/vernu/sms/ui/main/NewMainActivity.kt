@@ -32,7 +32,7 @@ import com.vernu.sms.ui.onboarding.OnboardingActivity
 import com.vernu.sms.ui.settings.DeviceHealthScreen
 import com.vernu.sms.ui.settings.SMSFilterScreen
 import com.vernu.sms.ui.settings.SettingsScreen
-import com.vernu.sms.ui.theme.TextbeeTheme
+import com.vernu.sms.ui.theme.IDGroupTheme
 
 enum class MainDestination(val label: String, val icon: ImageVector) {
     DASHBOARD("Dashboard", Icons.Default.Dashboard),
@@ -46,7 +46,7 @@ class NewMainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         RecoveryPoll.runAsync(this, "app_open")
         setContent {
-            TextbeeTheme {
+            IDGroupTheme {
                 val navController = rememberNavController()
                 MainScaffold(
                     navController = navController,
