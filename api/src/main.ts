@@ -80,6 +80,28 @@ async function bootstrap() {
     '/api/v1/billing/webhook/polar',
     express.raw({ type: 'application/json' }),
   )
+  // Temporary debug logging for the device-registration 400s. The query string
+  // is stripped because callers may authenticate with ?apiKey=. Bodies are
+  // never logged.
+  app.use('/api/v1/gateway', (req, res, next) => {
+    const originalJson = res.json.bind(res)
+    res.json = (body: any) => {
+      if (res.statusCode >= 400) {
+        logger.log(
+          `[GW] ${req.method} ${req.path} -> ${res.statusCode} ${JSON.stringify(body)}`,
+        )
+      }
+      return originalJson(body)
+    }
+    res.on('finish', () => {
+      if (res.statusCode >= 400) {
+        logger.log(
+          `[GW] ${req.method} ${req.path} -> ${res.statusCode} (finish)`,
+        )
+      }
+    })
+    next()
+  })
   app.useBodyParser('json', { limit: '2mb' });
   // The app runs behind a reverse proxy, so without this req.ip is the proxy's
   // loopback address for every request. That makes rate limiting see one client
