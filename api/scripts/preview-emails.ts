@@ -20,7 +20,7 @@ const TEMPLATE_DIR = path.join(__dirname, '..', 'src', 'mail', 'templates')
 const PARTIAL_DIR = path.join(TEMPLATE_DIR, 'partials')
 const OUT_DIR = path.join(__dirname, '..', 'tmp', 'email-preview')
 
-const BRAND = 'textbee.dev'
+const BRAND = 'IDGroup'
 const YEAR = new Date().getFullYear()
 
 /** Meta as the billing service actually records it, per notification type. */
@@ -47,11 +47,11 @@ const SAMPLES: Record<string, Record<string, any>> = {
   },
   'verify-email': {
     name: 'Alex',
-    verificationLink: 'https://app.textbee.dev/verify?token=sample-token-value',
+    verificationLink: 'https://sms.tainhamassage.com/verify?token=sample-token-value',
   },
   'password-reset-request': {
     name: 'Alex',
-    resetLink: 'https://app.textbee.dev/reset-password?token=sample-token-value',
+    resetLink: 'https://sms.tainhamassage.com/reset-password?token=sample-token-value',
     otp: '482913',
   },
   'password-reset-success': { name: 'Alex' },
@@ -72,10 +72,10 @@ const SAMPLES: Record<string, Record<string, any>> = {
     name: 'Alex',
     title: 'A webhook was turned off',
     subscriptionName: 'Order updates',
-    deliveryUrl: 'https://example.com/hooks/textbee',
+    deliveryUrl: 'https://example.com/hooks/idgroup',
     failureCount: 42,
     ctaLabel: 'Review webhooks',
-    ctaUrl: 'https://app.textbee.dev/dashboard/webhooks',
+    ctaUrl: 'https://sms.tainhamassage.com/dashboard/webhooks',
   },
   'webhook-auto-disable-admin-summary': {
     title: 'Webhooks auto-disabled',
@@ -217,10 +217,10 @@ async function main() {
     process.exitCode = 1
   }
 
-  const index = `<!doctype html><meta charset="utf-8"><title>textbee email previews</title>
+  const index = `<!doctype html><meta charset="utf-8"><title>IDGroup email previews</title>
 <style>body{font:16px/1.6 system-ui,sans-serif;max-width:40rem;margin:3rem auto;padding:0 1rem}
 h1{font-size:1.25rem}li{margin:.35rem 0}a{color:#EA580C}</style>
-<h1>textbee email previews</h1>
+<h1>IDGroup email previews</h1>
 <p>Rendered ${rendered.length} templates at ${new Date().toISOString()}.</p>
 <ul>${rendered.map((n) => `<li><a href="./${n}.html">${n}</a></li>`).join('')}</ul>`
   fs.writeFileSync(path.join(OUT_DIR, 'index.html'), index)

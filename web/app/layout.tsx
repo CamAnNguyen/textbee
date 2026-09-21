@@ -13,9 +13,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'textbee.dev - sms gateway - dashboard',
+  title: 'IDGroup - SMS Gateway',
 
-  metadataBase: new URL('https://textbee.dev'),
+  metadataBase: new URL('https://sms.tainhamassage.com'),
 }
 
 export default async function RootLayout({ children }: PropsWithChildren) {

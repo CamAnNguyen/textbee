@@ -34,8 +34,8 @@ async function bootstrap() {
   applyApiConventions(app)
 
   const config = buildSwaggerConfig({
-    title: 'textbee API Docs',
-    description: 'textbee - Android SMS Gateway API Docs',
+    title: 'IDGroup API Docs',
+    description: 'IDGroup - Android SMS Gateway API Docs',
   })
   const document = SwaggerModule.createDocument(app, config)
   // Every route that carries the spec itself, including swagger-ui-init.js,

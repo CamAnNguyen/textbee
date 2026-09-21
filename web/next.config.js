@@ -12,14 +12,14 @@ const nextConfig = {
       },
       {
         source: '/android',
-        destination: 'https://dl.textbee.dev',
+        destination: 'https://sms.tainhamassage.com',
         permanent: false,
       },
-      // The invite itself lives behind textbee.dev/discord, so it can rotate
+      // The invite itself lives behind github.com/CamAnNguyen/textbee/issues, so it can rotate
       // in one place.
       {
         source: '/discord',
-        destination: 'https://textbee.dev/discord',
+        destination: 'https://github.com/CamAnNguyen/textbee/issues',
         permanent: false,
       },
     ]

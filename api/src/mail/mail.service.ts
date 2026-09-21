@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common'
 
 // Context every template gets via the shared email-layout partial.
 const layoutContext = () => ({
-  brandName: 'textbee.dev',
+  brandName: 'IDGroup',
   year: new Date().getFullYear(),
 })
 

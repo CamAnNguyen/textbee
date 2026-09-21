@@ -33,7 +33,7 @@ import {
 // Failed OTP submissions allowed against a single password reset record.
 const MAX_PASSWORD_RESET_ATTEMPTS = 5
 
-export const API_KEY_PREFIX = 'txb_'
+export const API_KEY_PREFIX = 'idg_'
 const API_KEY_BODY_LENGTH = 32
 const API_KEY_BODY_ALPHABET =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -301,11 +301,11 @@ export class AuthService {
     })
     await passwordReset.save()
 
-    const resetLink = `${process.env.FRONTEND_URL || 'https://textbee.dev'}/reset-password?email=${encodeURIComponent(user.email)}&otp=${otp}`
+    const resetLink = `${process.env.FRONTEND_URL || 'https://sms.tainhamassage.com'}/reset-password?email=${encodeURIComponent(user.email)}&otp=${otp}`
 
     await this.mailService.sendEmailFromTemplate({
       to: user.email,
-      subject: 'textbee.dev - Password Reset',
+      subject: 'IDGroup - Password Reset',
       template: 'password-reset-request',
       context: { name: firstName(user.name), resetLink, otp },
     })
@@ -371,7 +371,7 @@ export class AuthService {
 
     this.mailService.sendEmailFromTemplate({
       to: user.email,
-      subject: 'textbee.dev - Password Reset',
+      subject: 'IDGroup - Password Reset',
       template: 'password-reset-success',
       context: { name: firstName(user.name) },
     })
@@ -440,11 +440,11 @@ export class AuthService {
     })
     await emailVerification.save()
 
-    const verificationLink = `${process.env.FRONTEND_URL || 'https://textbee.dev'}/verify-email?userId=${user._id}&verificationCode=${verificationCode}`
+    const verificationLink = `${process.env.FRONTEND_URL || 'https://sms.tainhamassage.com'}/verify-email?userId=${user._id}&verificationCode=${verificationCode}`
 
     await this.mailService.sendEmailFromTemplate({
       to: user.email,
-      subject: 'textbee.dev - Verify Email',
+      subject: 'IDGroup - Verify Email',
       template: 'verify-email',
       context: {
         name: firstName(user.name),

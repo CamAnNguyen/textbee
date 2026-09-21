@@ -32,7 +32,7 @@ describe('classifyChannel', () => {
       classifyChannel({
         hasBearer: false,
         path: '/api/v1/gateway/devices/652f1a/messages',
-        sdkClient: 'textbee-android/2.9.0',
+        sdkClient: 'idgroup-android/2.9.0',
       }),
     ).toBe('device')
   })
@@ -51,7 +51,7 @@ describe('classifyChannel', () => {
       classifyChannel({
         hasBearer: true,
         path: '/api/v1/gateway/devices',
-        sdkClient: 'textbee-android/2.9.0',
+        sdkClient: 'idgroup-android/2.9.0',
       }),
     ).toBe('web')
   })
@@ -69,8 +69,8 @@ describe('classifyClient', () => {
         userAgent: 'axios/1.7.2',
       }),
     ).toBe('textbee-js')
-    expect(classifyClient({ sdkClient: 'textbee-android/2.9.0' })).toBe(
-      'textbee-android',
+    expect(classifyClient({ sdkClient: 'idgroup-android/2.9.0' })).toBe(
+      'idgroup-android',
     )
   })
 

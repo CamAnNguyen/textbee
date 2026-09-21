@@ -48,7 +48,7 @@ export default function ContributePage() {
   return (
     <div className='min-h-screen p-4 md:p-8 space-y-8'>
       <div className='text-center space-y-4'>
-        <h1 className='text-4xl font-bold'>Support textbee</h1>
+        <h1 className='text-4xl font-bold'>Support IDGroup</h1>
         <p className='text-muted-foreground max-w-2xl mx-auto'>
           Your contribution, whether financial or through code, helps keep this
           project alive and growing.
@@ -63,7 +63,7 @@ export default function ContributePage() {
               Financial Support
             </CardTitle>
             <CardDescription>
-              Help sustain textbee&apos;s development through financial
+              Help sustain IDGroup&apos;s development through financial
               contributions
             </CardDescription>
           </CardHeader>
@@ -174,7 +174,7 @@ export default function ContributePage() {
               Code Contributions
             </CardTitle>
             <CardDescription>
-              Help improve textbee by contributing to the codebase
+              Help improve IDGroup by contributing to the codebase
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -221,14 +221,14 @@ export default function ContributePage() {
                   <CardTitle className='text-lg'>Security Reports</CardTitle>
                   <CardDescription>
                     Report security vulnerabilities privately to{' '}
-                    <a href='mailto:security@textbee.dev'>
-                      security@textbee.dev
+                    <a href='mailto:admin@tainhamassage.com'>
+                      admin@tainhamassage.com
                     </a>
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Button className='w-full' variant='outline' asChild>
-                    <Link href='mailto:security@textbee.dev'>
+                    <Link href='mailto:admin@tainhamassage.com'>
                       <Shield className='mr-2 h-4 w-4' />
                       Report Vulnerability
                     </Link>

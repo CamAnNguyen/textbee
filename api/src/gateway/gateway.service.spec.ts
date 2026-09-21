@@ -1479,13 +1479,13 @@ describe('GatewayService', () => {
       await service.receiveSMS(
         mockDeviceId,
         mockReceivedSmsData,
-        'textbee-android/2.8.0',
+        'idgroup-android/2.8.0',
       )
 
       expect(mockSmsModel.create.mock.calls[0][0].metadata).toEqual({
         appVersionCode: 18,
         appVersionName: '2.8.0',
-        client: 'textbee-android/2.8.0',
+        client: 'idgroup-android/2.8.0',
         appVersionAt: expect.any(Date),
       })
     })

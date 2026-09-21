@@ -1,5 +1,5 @@
 const POLAR_CUSTOMER_PORTAL_REQUEST_BASE =
-  'https://polar.sh/textbee/portal/request'
+  'https://sms.tainhamassage.com/dashboard'
 
 export function polarCustomerPortalRequestUrl(
   email?: string | null
@@ -10,10 +10,10 @@ export function polarCustomerPortalRequestUrl(
 }
 
 export const ExternalLinks = {
-  patreon: 'https://patreon.com/vernu',
-  github: 'https://github.com/textbee/textbee',
-  discord: 'https://textbee.dev/discord',
-  polar: 'https://donate.textbee.dev',
-  twitter: 'https://x.com/textbeedotdev',
-  linkedin: 'https://www.linkedin.com/company/textbeedotdev',
+  patreon: 'https://github.com/CamAnNguyen/textbee',
+  github: 'https://github.com/CamAnNguyen/textbee',
+  discord: 'https://github.com/CamAnNguyen/textbee/issues',
+  polar: 'https://sms.tainhamassage.com',
+  twitter: 'https://sms.tainhamassage.com',
+  linkedin: 'https://sms.tainhamassage.com',
 }

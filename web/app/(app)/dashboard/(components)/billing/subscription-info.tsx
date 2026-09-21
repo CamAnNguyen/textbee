@@ -144,7 +144,7 @@ function LimitTile({
               </TooltipTrigger>
               <TooltipContent>
                 <p className='max-w-[220px]'>
-                  Custom limit set for your account by the textbee team.
+                  Custom limit set for your account by the IDGroup team.
                   {planName
                     ? ` Standard ${planName} plan limit: ${formatLimit(
                         planValue

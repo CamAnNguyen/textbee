@@ -158,8 +158,8 @@ describe('AuthService', () => {
       const first = await service.generateApiKey({ _id: 'user_1' } as any)
       const second = await service.generateApiKey({ _id: 'user_1' } as any)
 
-      expect(first.apiKey).toMatch(/^txb_[A-Za-z0-9]{32}$/)
-      expect(second.apiKey).toMatch(/^txb_[A-Za-z0-9]{32}$/)
+      expect(first.apiKey).toMatch(/^idg_[A-Za-z0-9]{32}$/)
+      expect(second.apiKey).toMatch(/^idg_[A-Za-z0-9]{32}$/)
       expect(first.apiKey).not.toBe(second.apiKey)
     })
 
@@ -175,7 +175,7 @@ describe('AuthService', () => {
   })
 
   describe('verifyApiKey', () => {
-    const raw = 'txb_' + 'a'.repeat(32)
+    const raw = 'idg_' + 'a'.repeat(32)
 
     it('resolves through the sha256 index without touching bcrypt', async () => {
       const { service, apiKeyModel } = build()
@@ -241,7 +241,7 @@ describe('AuthService', () => {
 
     it('rejects a key that shares a masked prefix but not the secret body', async () => {
       const { service, apiKeyModel } = build()
-      const otherKey = 'txb_' + 'a'.repeat(13) + 'b'.repeat(19)
+      const otherKey = 'idg_' + 'a'.repeat(13) + 'b'.repeat(19)
       const collidingDoc = {
         _id: 'key_other',
         user: 'user_2',
@@ -342,7 +342,7 @@ describe('AuthService', () => {
       _id: apiKeyId,
       user: userId,
       name: 'Server key',
-      apiKey: 'txb_abc123******',
+      apiKey: 'idg_abc123******',
       hashedApiKey: 'bcrypt-hash',
       hashedApiKeySha256: 'sha-hash',
       usageCount: 128,

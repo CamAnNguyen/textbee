@@ -126,7 +126,7 @@ export const mockApiKeys = [
 export const mockWebhooks = [
   {
     _id: 'wh_1',
-    deliveryUrl: 'https://example.com/webhooks/textbee',
+    deliveryUrl: 'https://example.com/webhooks/idgroup',
     events: ['message.received'],
     isActive: true,
     createdAt: new Date('2026-06-15T00:00:00.000Z').toISOString(),
@@ -156,7 +156,7 @@ export const mockMessages = {
     {
       _id: 'msg_1',
       recipient: '+15557654321',
-      message: 'Hello from textbee',
+      message: 'Hello from IDGroup',
       status: 'sent',
       type: 'sent',
       device: { _id: 'device_1', brand: 'Google', model: 'Pixel 8' },

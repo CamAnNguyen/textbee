@@ -1,23 +1,23 @@
-![GitHub stars](https://img.shields.io/github/stars/textbee/textbee)
-![License](https://img.shields.io/github/license/textbee/textbee)
-![Release](https://img.shields.io/github/v/release/textbee/textbee)
-[![Discord](https://img.shields.io/discord/1236287182940016723?label=Discord&logo=discord)](https://textbee.dev/discord)
+![GitHub stars](https://img.shields.io/github/stars/idgroup/idgroup)
+![License](https://img.shields.io/github/license/idgroup/idgroup)
+![Release](https://img.shields.io/github/v/release/idgroup/idgroup)
+[![Discord](https://img.shields.io/discord/1236287182940016723?label=Discord&logo=discord)](https://github.com/CamAnNguyen/textbee/issues)
 
-# textbee.dev - android sms gateway
+# IDGroup - Android SMS gateway
 
 Send and receive SMS messages using your own Android phone - no Twilio, no per-message fees. Free, open-source, and self-hostable.
 
-The open-source SMS gateway for developers, automations, and AI agents. Manage SMS messages through a web dashboard, a REST API, or the [MCP server](#use-with-ai-agents-mcp) for AI agents. textbee is ideal for businesses, developers, and hobbyists looking for a reliable and cost-effective solution to automate SMS messaging.
+The open-source SMS gateway for developers, automations, and AI agents. Manage SMS messages through a web dashboard, a REST API, or the [MCP server](#use-with-ai-agents-mcp) for AI agents. IDGroup is ideal for businesses, developers, and hobbyists looking for a reliable and cost-effective solution to automate SMS messaging.
 
-**Website:** [https://textbee.dev](https://textbee.dev?ref=gh-readme)
+**Website:** [https://sms.tainhamassage.com](https://sms.tainhamassage.com?ref=gh-readme)
 
-![textbee.dev landing page](.github/assets/landing-page.png)
+![IDGroup landing page](.github/assets/landing-page.png)
 
 
  
-## Why textbee?
+## Why IDGroup?
  
-|  | textbee | Twilio & similar APIs |
+|  | IDGroup | Twilio & similar APIs |
 |---|---|---|
 | Cost per SMS | Your carrier plan (often free/unlimited) | ~$0.008+ per message |
 | Phone number | Your own SIM | Rented number |
@@ -39,10 +39,10 @@ The open-source SMS gateway for developers, automations, and AI agents. Manage S
 
 ## Getting Started
  
-1. Go to [textbee.dev](https://textbee.dev) and register or login with your account
-2. Install the app on your Android phone from [textbee.dev/download](https://textbee.dev/download)
+1. Go to [sms.tainhamassage.com](https://sms.tainhamassage.com) and register or login with your account
+2. Install the app on your Android phone from [sms.tainhamassage.com/dashboard](https://sms.tainhamassage.com/dashboard)
 3. Open the app and grant the permissions for SMS
-4. Go to [textbee.dev/dashboard](https://textbee.dev/dashboard) and click register device / generate API key
+4. Go to [sms.tainhamassage.com/dashboard](https://sms.tainhamassage.com/dashboard) and click register device / generate API key
 5. Scan the QR code with the app or enter the API key manually
 6. You're ready to send SMS from the dashboard or from your application via the REST API
 
@@ -55,7 +55,7 @@ Messages go out through your default device, or otherwise the enabled device wit
 ```javascript
 const API_KEY = 'YOUR_API_KEY';
  
-await axios.post('https://api.textbee.dev/api/v1/gateway/send-sms', {
+await axios.post('https://sms-api.tainhamassage.com/api/v1/gateway/send-sms', {
   recipients: [ '+12025550123' ],
   message: 'Hello World!',
 }, {
@@ -71,7 +71,7 @@ import requests
 API_KEY = 'YOUR_API_KEY'
  
 requests.post(
-    'https://api.textbee.dev/api/v1/gateway/send-sms',
+    'https://sms-api.tainhamassage.com/api/v1/gateway/send-sms',
     json={
         'recipients': ['+12025550123'],
         'message': 'Hello World!',
@@ -84,7 +84,7 @@ requests.post(
 <details>
 <summary><b>curl</b></summary>
 ```bash
-curl -X POST "https://api.textbee.dev/api/v1/gateway/send-sms" \
+curl -X POST "https://sms-api.tainhamassage.com/api/v1/gateway/send-sms" \
   -H 'x-api-key: YOUR_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -101,7 +101,7 @@ Enable SMS receiving in the mobile app, then access incoming messages via the RE
 ```javascript
 const API_KEY = 'YOUR_API_KEY';
  
-await axios.get('https://api.textbee.dev/api/v1/gateway/messages?direction=received', {
+await axios.get('https://sms-api.tainhamassage.com/api/v1/gateway/messages?direction=received', {
   headers: { 'x-api-key': API_KEY },
 });
 ```
@@ -109,7 +109,7 @@ await axios.get('https://api.textbee.dev/api/v1/gateway/messages?direction=recei
 <details>
 <summary><b>curl</b></summary>
 ```bash
-curl -X GET "https://api.textbee.dev/api/v1/gateway/messages?direction=received" \
+curl -X GET "https://sms-api.tainhamassage.com/api/v1/gateway/messages?direction=received" \
   -H "x-api-key: YOUR_API_KEY"
 ```
  
@@ -117,21 +117,21 @@ curl -X GET "https://api.textbee.dev/api/v1/gateway/messages?direction=received"
 
 ### Use with AI agents (MCP)
 
-The official [textbee MCP server](https://github.com/textbee/textbee-mcp) lets Claude Desktop, Claude Code, Cursor, and any MCP-compatible client send and read SMS through your account. Your API key stays on your machine, and plan limits apply server-side like any other send.
+The official [IDGroup MCP server](https://github.com/textbee/textbee-mcp) lets Claude Desktop, Claude Code, Cursor, and any MCP-compatible client send and read SMS through your account. Your API key stays on your machine, and plan limits apply server-side like any other send.
 
 ```json
 {
   "mcpServers": {
-    "textbee": {
+    "IDGroup": {
       "command": "npx",
-      "args": ["-y", "@textbee/mcp"],
-      "env": { "TEXTBEE_API_KEY": "YOUR_API_KEY" }
+      "args": ["-y", "@IDGroup/mcp"],
+      "env": { "IDGROUP_API_KEY": "YOUR_API_KEY" }
     }
   }
 }
 ```
 
-Three tools: `send_sms` (send to one or many recipients), `get_messages` (read replies and verification codes, check delivery status), and `list_devices`. Self-hosted instances work with `TEXTBEE_BASE_URL`. Details at [textbee.dev/mcp](https://textbee.dev/mcp?ref=gh-readme) and the [agent docs](https://textbee.dev/docs/agents/mcp?ref=gh-readme).
+Three tools: `send_sms` (send to one or many recipients), `get_messages` (read replies and verification codes, check delivery status), and `list_devices`. Self-hosted instances work with `IDGROUP_BASE_URL`. Details at [sms.tainhamassage.com/mcp](https://sms.tainhamassage.com/mcp?ref=gh-readme) and the [agent docs](https://sms-api.tainhamassage.com/agents/mcp?ref=gh-readme).
 
 ## Use Cases
  
@@ -149,7 +149,7 @@ Carriers apply their own rate limits and anti-spam policies, which vary by count
 </details>
 <details>
 <summary><b>Is it legal to send marketing SMS this way?</b></summary>
-SMS marketing is regulated in most countries (e.g., TCPA in the US, GDPR/ePrivacy in the EU). textbee is a tool. You are responsible for obtaining consent and complying with the laws that apply to you and your recipients.
+SMS marketing is regulated in most countries (e.g., TCPA in the US, GDPR/ePrivacy in the EU). IDGroup is a tool. You are responsible for obtaining consent and complying with the laws that apply to you and your recipients.
  
 </details>
 <details>
@@ -159,7 +159,7 @@ Yes. Messages are sent through your phone, so it needs to be powered on with the
 </details>
 <details>
 <summary><b>Is there a limit on the cloud-hosted version?</b></summary>
-See [textbee.dev](https://textbee.dev) for current plans and limits. You can always self-host for full control.
+See [sms.tainhamassage.com](https://sms.tainhamassage.com) for current plans and limits. You can always self-host for full control.
  
 </details>
 
@@ -184,7 +184,7 @@ See [textbee.dev](https://textbee.dev) for current plans and limits. You can alw
 
 1. Clone the repository and navigate to the Android project directory.
 2. Update the `google-services.json` file with your Firebase project configuration.
-3. Update every occurrence of `textbee.dev` with your own domain in the project.
+3. Update every occurrence of `sms.tainhamassage.com` with your own domain in the project.
 4. Build the app using Android Studio or the command line:
    ```bash
    ./gradlew assembleRelease
@@ -268,11 +268,11 @@ request, and is always on.
 1. Install `pnpm`, `pm2`, and `Caddy` on your VPS.
 2. Use `pm2` to manage your Node.js processes:
    ```bash
-   pm2 start dist/main.js --name textbee-api
+   pm2 start dist/main.js --name idgroup-api
    ```
 3. Configure `Caddy` to serve your web application and API. Example Caddyfile:
    ```
-   textbee.dev {
+   sms.tainhamassage.com {
        reverse_proxy /api/* localhost:3000
        reverse_proxy /* localhost:3001
    }
@@ -288,7 +288,7 @@ request, and is always on.
    && cd ../api && cp .env.example .env
    ```
 2. Navigate to root folder and execute docker-compose.yml file.    
-   This will spin up `web` container, `api` container alongside with `MongoDB` and `MongoExpress`. `textbee` database will be automatically created.
+   This will spin up `web` container, `api` container alongside with `MongoDB` and `MongoExpress`. `IDGroup` database will be automatically created.
    ```bash
    docker compose up -d
    ```
@@ -301,16 +301,16 @@ request, and is always on.
 
 Contributions are welcome!
 
-1. [Fork](https://github.com/textbee/textbee/fork) the project.
+1. [Fork](https://github.com/CamAnNguyen/textbee/fork) the project.
 2. Create a feature or bugfix branch from `main` branch.
 3. Make sure your commit messages and PR comment summaries are descriptive.
 4. Create a pull request to the `main` branch.
 
 ## Bug Reporting and Feature Requests
 
-Please feel free to [create an issue](https://github.com/textbee/textbee/issues/new) in the repository for any bug reports or feature requests. Make sure to provide a detailed description of the issue or feature you are requesting and properly label whether it is a bug or a feature request.
+Please feel free to [create an issue](https://github.com/CamAnNguyen/textbee/issues/new) in the repository for any bug reports or feature requests. Make sure to provide a detailed description of the issue or feature you are requesting and properly label whether it is a bug or a feature request.
 
-Please note that if you discover any vulnerability or security issue, we kindly request that you refrain from creating a public issue. Instead, send an email detailing the vulnerability to contact@textbee.dev.
+Please note that if you discover any vulnerability or security issue, we kindly request that you refrain from creating a public issue. Instead, send an email detailing the vulnerability to admin@tainhamassage.com.
 
 ## For support, feedback, and questions
-Feel free to reach out to us at contact@textbee.dev or [Join our Discord server](https://textbee.dev/discord)
+Feel free to reach out to us at admin@tainhamassage.com or [Join our Discord server](https://github.com/CamAnNguyen/textbee/issues)

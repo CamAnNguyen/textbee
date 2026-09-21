@@ -1,8 +1,8 @@
 export const Routes = {
-  landingPage: 'https://textbee.dev',
-  contribute: 'https://textbee.dev/contribute',
-  useCases: 'https://textbee.dev/use-cases',
-  quickstart: 'https://textbee.dev/quickstart',
+  landingPage: 'https://sms.tainhamassage.com',
+  contribute: 'https://github.com/CamAnNguyen/textbee',
+  useCases: 'https://sms.tainhamassage.com',
+  quickstart: 'https://sms-api.tainhamassage.com',
   login: '/login',
   register: '/register',
   logout: '/logout',
@@ -11,9 +11,9 @@ export const Routes = {
 
   dashboard: '/dashboard',
 
-  downloadAndroidApp: 'https://textbee.dev/download',
-  privacyPolicy: 'https://textbee.dev/privacy-policy',
-  refundPolicy: 'https://textbee.dev/refund-policy',
-  termsOfService: 'https://textbee.dev/terms-of-service',
-  statusPage: 'https://status.textbee.dev',
+  downloadAndroidApp: 'https://sms.tainhamassage.com/dashboard',
+  privacyPolicy: 'https://sms.tainhamassage.com',
+  refundPolicy: 'https://sms.tainhamassage.com',
+  termsOfService: 'https://sms.tainhamassage.com',
+  statusPage: 'https://sms.tainhamassage.com',
 }

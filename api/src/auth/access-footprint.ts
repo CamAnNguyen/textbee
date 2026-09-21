@@ -13,11 +13,12 @@ const DEVICE_ROUTE =
   /\/gateway\/devices\/[^/]+\/(heartbeat|receive-sms|receiveSMS|sms-status)$/
 
 // The client header the official clients send, for example textbee-js/1.4.0.
-const ANDROID_CLIENT = 'textbee-android'
+// textbee-android covers builds from before the IDGroup rebrand.
+const ANDROID_CLIENT_PREFIXES = ['idgroup-android', 'textbee-android']
 
 const CLIENT_FAMILIES: { label: string; match: RegExp }[] = [
   { label: 'textbee-js', match: /^textbee-js\b/ },
-  { label: 'textbee-android', match: /^textbee-android\b/ },
+  { label: 'idgroup-android', match: /^(?:idgroup|textbee)-android\b/ },
 ]
 
 const USER_AGENT_FAMILIES: { label: string; match: RegExp }[] = [
@@ -58,7 +59,10 @@ export function classifyChannel({
   sdkClient?: string
 }): AccessChannel {
   if (hasBearer) return 'web'
-  if (sdkClient?.toLowerCase().startsWith(ANDROID_CLIENT)) return 'device'
+  const client = sdkClient?.toLowerCase()
+  if (client && ANDROID_CLIENT_PREFIXES.some((p) => client.startsWith(p))) {
+    return 'device'
+  }
   if (DEVICE_ROUTE.test(requestPath(path))) return 'device'
   return 'api'
 }

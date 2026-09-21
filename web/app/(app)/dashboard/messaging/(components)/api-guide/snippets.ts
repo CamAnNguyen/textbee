@@ -4,7 +4,7 @@
 // is runnable after pasting one API key. The previous guide always printed
 // YOUR_DEVICE_ID, which meant nothing on the page could be run as-is.
 
-export const API_BASE_URL = 'https://api.textbee.dev/api/v1'
+export const API_BASE_URL = 'https://sms-api.tainhamassage.com/api/v1'
 
 export type LanguageId = 'curl' | 'node' | 'python' | 'php' | 'go' | 'sdk'
 
@@ -60,7 +60,10 @@ export const SDK_PACKAGE = '@textbee/sdk'
 // copy button hands back runnable code and nothing else.
 const SDK_SETUP = `import { Textbee } from '@textbee/sdk'
 
-const textbee = new Textbee({ apiKey: process.env.TEXTBEE_API_KEY })`
+const idgroup = new Textbee({
+  apiKey: process.env.IDGROUP_API_KEY,
+  baseUrl: '${API_BASE_URL}',
+})`
 
 export function buildEndpoints(deviceId?: string): Endpoint[] {
   const id = deviceId || PLACEHOLDER_DEVICE
@@ -75,23 +78,23 @@ export function buildEndpoints(deviceId?: string): Endpoint[] {
       path: '/gateway/send-sms',
       samples: {
         curl: `curl -X POST "${API_BASE_URL}/gateway/send-sms" \\
-  -H "x-api-key: $TEXTBEE_API_KEY" \\
+  -H "x-api-key: $IDGROUP_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{${device.curl}
     "recipients": ["+14155550101"],
-    "message": "Hello from textbee"
+    "message": "Hello from IDGroup"
   }'`,
         node: `const res = await fetch(
   '${API_BASE_URL}/gateway/send-sms',
   {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.TEXTBEE_API_KEY,
+      'x-api-key': process.env.IDGROUP_API_KEY,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({${device.node}
       recipients: ['+14155550101'],
-      message: 'Hello from textbee',
+      message: 'Hello from IDGroup',
     }),
   }
 )
@@ -101,10 +104,10 @@ console.log(await res.json())`,
 
 res = requests.post(
     '${API_BASE_URL}/gateway/send-sms',
-    headers={'x-api-key': os.environ['TEXTBEE_API_KEY']},
+    headers={'x-api-key': os.environ['IDGROUP_API_KEY']},
     json={${device.python}
         'recipients': ['+14155550101'],
-        'message': 'Hello from textbee',
+        'message': 'Hello from IDGroup',
     },
 )
 
@@ -116,12 +119,12 @@ curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
-        'x-api-key: ' . getenv('TEXTBEE_API_KEY'),
+        'x-api-key: ' . getenv('IDGROUP_API_KEY'),
         'Content-Type: application/json',
     ],
     CURLOPT_POSTFIELDS => json_encode([${device.php}
         'recipients' => ['+14155550101'],
-        'message' => 'Hello from textbee',
+        'message' => 'Hello from IDGroup',
     ]),
 ]);
 
@@ -137,12 +140,12 @@ import (
 )
 
 func main() {
-	body := []byte(\`{${device.go}"recipients":["+14155550101"],"message":"Hello from textbee"}\`)
+	body := []byte(\`{${device.go}"recipients":["+14155550101"],"message":"Hello from IDGroup"}\`)
 
 	req, _ := http.NewRequest("POST",
 		"${API_BASE_URL}/gateway/send-sms",
 		bytes.NewBuffer(body))
-	req.Header.Set("x-api-key", os.Getenv("TEXTBEE_API_KEY"))
+	req.Header.Set("x-api-key", os.Getenv("IDGROUP_API_KEY"))
 	req.Header.Set("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
@@ -156,9 +159,9 @@ func main() {
 }`,
         sdk: `${SDK_SETUP}
 
-const result = await textbee.sendSms({${device.sdk}
+const result = await idgroup.sendSms({${device.sdk}
   recipients: ['+14155550101'],
-  message: 'Hello from textbee',
+  message: 'Hello from IDGroup',
 })
 
 console.log(result)`,
@@ -179,7 +182,7 @@ console.log(result)`,
       path: '/gateway/send-bulk-sms',
       samples: {
         curl: `curl -X POST "${API_BASE_URL}/gateway/send-bulk-sms" \\
-  -H "x-api-key: $TEXTBEE_API_KEY" \\
+  -H "x-api-key: $IDGROUP_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{${device.curl}
     "messages": [
@@ -192,7 +195,7 @@ console.log(result)`,
   {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.TEXTBEE_API_KEY,
+      'x-api-key': process.env.IDGROUP_API_KEY,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({${device.node}
@@ -209,7 +212,7 @@ console.log(await res.json())`,
 
 res = requests.post(
     '${API_BASE_URL}/gateway/send-bulk-sms',
-    headers={'x-api-key': os.environ['TEXTBEE_API_KEY']},
+    headers={'x-api-key': os.environ['IDGROUP_API_KEY']},
     json={${device.python}
         'messages': [
             {'recipients': ['+14155550101'], 'message': 'Hi Alice'},
@@ -226,7 +229,7 @@ curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTPHEADER => [
-        'x-api-key: ' . getenv('TEXTBEE_API_KEY'),
+        'x-api-key: ' . getenv('IDGROUP_API_KEY'),
         'Content-Type: application/json',
     ],
     CURLOPT_POSTFIELDS => json_encode([${device.php}
@@ -257,7 +260,7 @@ func main() {
 	req, _ := http.NewRequest("POST",
 		"${API_BASE_URL}/gateway/send-bulk-sms",
 		bytes.NewBuffer(body))
-	req.Header.Set("x-api-key", os.Getenv("TEXTBEE_API_KEY"))
+	req.Header.Set("x-api-key", os.Getenv("IDGROUP_API_KEY"))
 	req.Header.Set("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
@@ -274,7 +277,7 @@ const res = await fetch(
   {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.TEXTBEE_API_KEY,
+      'x-api-key': process.env.IDGROUP_API_KEY,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({${device.node}
@@ -305,10 +308,10 @@ console.log(await res.json())`,
       path: '/gateway/messages?direction=received',
       samples: {
         curl: `curl "${API_BASE_URL}/gateway/messages?direction=received" \\
-  -H "x-api-key: $TEXTBEE_API_KEY"`,
+  -H "x-api-key: $IDGROUP_API_KEY"`,
         node: `const res = await fetch(
   '${API_BASE_URL}/gateway/messages?direction=received',
-  { headers: { 'x-api-key': process.env.TEXTBEE_API_KEY } }
+  { headers: { 'x-api-key': process.env.IDGROUP_API_KEY } }
 )
 
 console.log(await res.json())`,
@@ -316,7 +319,7 @@ console.log(await res.json())`,
 
 res = requests.get(
     '${API_BASE_URL}/gateway/messages',
-    headers={'x-api-key': os.environ['TEXTBEE_API_KEY']},
+    headers={'x-api-key': os.environ['IDGROUP_API_KEY']},
     params={'direction': 'received'},
 )
 
@@ -326,7 +329,7 @@ $ch = curl_init('${API_BASE_URL}/gateway/messages?direction=received');
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => ['x-api-key: ' . getenv('TEXTBEE_API_KEY')],
+    CURLOPT_HTTPHEADER => ['x-api-key: ' . getenv('IDGROUP_API_KEY')],
 ]);
 
 echo curl_exec($ch);`,
@@ -342,7 +345,7 @@ import (
 func main() {
 	req, _ := http.NewRequest("GET",
 		"${API_BASE_URL}/gateway/messages?direction=received", nil)
-	req.Header.Set("x-api-key", os.Getenv("TEXTBEE_API_KEY"))
+	req.Header.Set("x-api-key", os.Getenv("IDGROUP_API_KEY"))
 
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
@@ -352,7 +355,7 @@ func main() {
 }`,
         sdk: `${SDK_SETUP}
 
-const { data, meta } = await textbee.getMessages({
+const { data, meta } = await idgroup.getMessages({
   direction: 'received',
   page: 1,
   limit: 20,
@@ -361,7 +364,7 @@ const { data, meta } = await textbee.getMessages({
 console.log(data, meta)
 
 // Or drain every match, following the cursor for you
-for await (const message of textbee.iterateMessages({
+for await (const message of idgroup.iterateMessages({
   direction: 'received',
   order: 'asc',
 })) {
@@ -391,17 +394,17 @@ for await (const message of textbee.iterateMessages({
       path: '/gateway/messages',
       samples: {
         curl: `curl "${API_BASE_URL}/gateway/messages?page=1&limit=20" \\
-  -H "x-api-key: $TEXTBEE_API_KEY"
+  -H "x-api-key: $IDGROUP_API_KEY"
 
 # Which recipients of a batch failed, using the smsBatchId a send returns
 curl "${API_BASE_URL}/gateway/messages?smsBatchId=YOUR_BATCH_ID&status=failed" \\
-  -H "x-api-key: $TEXTBEE_API_KEY"`,
+  -H "x-api-key: $IDGROUP_API_KEY"`,
         node: `const url = new URL('${API_BASE_URL}/gateway/messages')
 url.searchParams.set('page', '1')
 url.searchParams.set('limit', '20')
 
 const res = await fetch(url, {
-  headers: { 'x-api-key': process.env.TEXTBEE_API_KEY },
+  headers: { 'x-api-key': process.env.IDGROUP_API_KEY },
 })
 
 console.log(await res.json())`,
@@ -409,7 +412,7 @@ console.log(await res.json())`,
 
 res = requests.get(
     '${API_BASE_URL}/gateway/messages',
-    headers={'x-api-key': os.environ['TEXTBEE_API_KEY']},
+    headers={'x-api-key': os.environ['IDGROUP_API_KEY']},
     params={'page': 1, 'limit': 20},
 )
 
@@ -420,7 +423,7 @@ $ch = curl_init($url);
 
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => ['x-api-key: ' . getenv('TEXTBEE_API_KEY')],
+    CURLOPT_HTTPHEADER => ['x-api-key: ' . getenv('IDGROUP_API_KEY')],
 ]);
 
 echo curl_exec($ch);`,
@@ -436,7 +439,7 @@ import (
 func main() {
 	req, _ := http.NewRequest("GET",
 		"${API_BASE_URL}/gateway/messages?page=1&limit=20", nil)
-	req.Header.Set("x-api-key", os.Getenv("TEXTBEE_API_KEY"))
+	req.Header.Set("x-api-key", os.Getenv("IDGROUP_API_KEY"))
 
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
@@ -446,7 +449,7 @@ func main() {
 }`,
         sdk: `${SDK_SETUP}
 
-const { data, meta } = await textbee.getMessages({
+const { data, meta } = await idgroup.getMessages({
   page: 1,
   limit: 20,
 })
@@ -454,8 +457,8 @@ const { data, meta } = await textbee.getMessages({
 console.log(data, meta)
 
 // Narrow to one device, or to the recipients of a batch that failed
-await textbee.getMessages({ deviceIds: ['${id}'] })
-await textbee.getMessages({ smsBatchId, status: 'failed' })`,
+await idgroup.getMessages({ deviceIds: ['${id}'] })
+await idgroup.getMessages({ smsBatchId, status: 'failed' })`,
       },
       // Status values match the SMS schema: pending, dispatched, sent,
       // delivered, failed, unknown, received.
@@ -464,7 +467,7 @@ await textbee.getMessages({ smsBatchId, status: 'failed' })`,
     {
       "_id": "665f1c2a9b1e4a0012ab34cd",
       "recipient": "+14155550101",
-      "message": "Hello from textbee",
+      "message": "Hello from IDGroup",
       "direction": "sent",
       "status": "delivered",
       "requestedAt": "2026-07-18T09:12:00.000Z",

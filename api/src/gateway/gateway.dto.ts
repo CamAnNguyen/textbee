@@ -147,7 +147,7 @@ export class RegisterDeviceInputDTO {
     type: String,
     required: false,
     description:
-      'Firebase Cloud Messaging token. textbee pushes send jobs to this token, so a stale value stops delivery.',
+      'Firebase Cloud Messaging token. IDGroup pushes send jobs to this token, so a stale value stops delivery.',
   })
   fcmToken?: string
 
@@ -233,7 +233,7 @@ export class RegisterDeviceInputDTO {
   @ApiProperty({
     type: String,
     required: false,
-    description: 'textbee app version name.',
+    description: 'IDGroup app version name.',
     example: '1.9.0',
   })
   appVersionName?: string
@@ -241,7 +241,7 @@ export class RegisterDeviceInputDTO {
   @ApiProperty({
     type: Number,
     required: false,
-    description: 'textbee app version code.',
+    description: 'IDGroup app version code.',
     example: 190,
   })
   appVersionCode?: number
@@ -501,7 +501,7 @@ export class AppVersionInfoDTO {
   @ApiProperty({
     type: String,
     required: false,
-    description: 'textbee app version name.',
+    description: 'IDGroup app version name.',
     example: '1.9.0',
   })
   versionName?: string
@@ -509,7 +509,7 @@ export class AppVersionInfoDTO {
   @ApiProperty({
     type: Number,
     required: false,
-    description: 'textbee app version code.',
+    description: 'IDGroup app version code.',
     example: 190,
   })
   versionCode?: number
@@ -740,7 +740,7 @@ export class DeviceDTO {
   @ApiProperty({
     type: String,
     required: false,
-    description: 'textbee app version name.',
+    description: 'IDGroup app version name.',
     example: '1.9.0',
   })
   appVersionName?: string
@@ -748,7 +748,7 @@ export class DeviceDTO {
   @ApiProperty({
     type: Number,
     required: false,
-    description: 'textbee app version code.',
+    description: 'IDGroup app version code.',
     example: 190,
   })
   appVersionCode?: number
@@ -781,7 +781,7 @@ export class DeviceDTO {
   @ApiProperty({
     type: Boolean,
     description:
-      'Whether incoming messages are forwarded to textbee. Required for received message history and webhooks.',
+      'Whether incoming messages are forwarded to IDGroup. Required for received message history and webhooks.',
   })
   receiveSMSEnabled: boolean
 
@@ -816,7 +816,7 @@ export class DeviceDTO {
   @ApiProperty({
     type: AppVersionInfoDTO,
     required: false,
-    description: 'textbee app version running on the device.',
+    description: 'IDGroup app version running on the device.',
   })
   appVersionInfo?: AppVersionInfoDTO
 

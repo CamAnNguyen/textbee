@@ -1,5 +1,5 @@
 services:
-  textbee-db:
+  mongo:
     image: mongo:8
     restart: always
     environment:
@@ -9,7 +9,7 @@ services:
     volumes:
       - mongodb_data:/data/db
     networks:
-      - textbee-network
+      - internal
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 30s
@@ -17,7 +17,7 @@ services:
       retries: 3
       start_period: 20s
 
-  textbee-api:
+  api:
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -26,8 +26,8 @@ services:
       - "3001"
     environment:
       - PORT=3001
-      - MONGO_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@textbee-db:27017/textbee?authSource=admin
-      - REDIS_URL=redis://textbee-redis:6379
+      - MONGO_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongo:27017/textbee?authSource=admin
+      - REDIS_URL=redis://redis:6379
       - USE_SMS_QUEUE=${USE_SMS_QUEUE:-false}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRATION=${JWT_EXPIRATION:-60d}
@@ -44,12 +44,12 @@ services:
       - LIMIT_EXEMPT_USER_IDS=${LIMIT_EXEMPT_USER_IDS:-}
       - ADMIN_EMAIL=${ADMIN_EMAIL:-}
     depends_on:
-      textbee-db:
+      mongo:
         condition: service_healthy
     networks:
-      - textbee-network
+      - internal
 
-  textbee-web:
+  web:
     build:
       context: ./web
       dockerfile: Dockerfile
@@ -68,17 +68,17 @@ services:
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - ADMIN_EMAIL=${ADMIN_EMAIL:-}
     depends_on:
-      - textbee-api
+      - api
     networks:
-      - textbee-network
+      - internal
 
-  textbee-redis:
+  redis:
     image: redis:8-alpine
     restart: always
     volumes:
       - redis_data:/data
     networks:
-      - textbee-network
+      - internal
     command: redis-server --appendonly yes
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -88,7 +88,7 @@ services:
       start_period: 20s
 
 networks:
-  textbee-network:
+  internal:
     driver: bridge
 
 volumes:

@@ -84,7 +84,7 @@ export class MetaCapiService {
           event_id: eventId,
           action_source: 'website',
           event_source_url: `${
-            process.env.FRONTEND_URL ?? 'https://app.textbee.dev'
+            process.env.FRONTEND_URL ?? 'https://sms.tainhamassage.com'
           }${event.sourcePath ?? '/'}`,
           user_data: this.userData(event.user),
           ...(event.customData && { custom_data: event.customData }),

@@ -15,8 +15,8 @@ export class CreateWebhookDto {
     type: String,
     required: true,
     description:
-      'URL textbee POSTs events to. Must be http or https and publicly reachable. Private and loopback hosts are rejected.',
-    example: 'https://example.com/textbee/webhook',
+      'URL IDGroup POSTs events to. Must be http or https and publicly reachable. Private and loopback hosts are rejected.',
+    example: 'https://example.com/idgroup/webhook',
   })
   deliveryUrl: string
 
@@ -24,7 +24,7 @@ export class CreateWebhookDto {
     type: String,
     required: true,
     description:
-      'Shared secret, at least 20 characters. textbee signs every delivery with it and sends the signature in the X-Signature header, so your endpoint can verify the request really came from textbee.',
+      'Shared secret, at least 20 characters. IDGroup signs every delivery with it and sends the signature in the X-Signature header, so your endpoint can verify the request really came from IDGroup.',
   })
   signingSecret?: string
 
@@ -51,7 +51,7 @@ export class UpdateWebhookDto {
     type: Boolean,
     required: false,
     description:
-      'Whether deliveries are attempted. Set it to true to re-enable a subscription textbee paused after repeated failures.',
+      'Whether deliveries are attempted. Set it to true to re-enable a subscription IDGroup paused after repeated failures.',
   })
   isActive: boolean
 
@@ -60,7 +60,7 @@ export class UpdateWebhookDto {
     required: false,
     description:
       'New delivery URL. Same rules as on create: http or https, no private or loopback hosts.',
-    example: 'https://example.com/textbee/webhook',
+    example: 'https://example.com/idgroup/webhook',
   })
   deliveryUrl: string
 
@@ -88,7 +88,7 @@ export class WebhookNoteDTO {
   @ApiProperty({
     type: String,
     description:
-      'What textbee recorded, for example why the subscription was paused.',
+      'What IDGroup recorded, for example why the subscription was paused.',
   })
   text: string
 }
@@ -110,7 +110,7 @@ export class WebhookSubscriptionDTO {
   @ApiProperty({
     type: Boolean,
     description:
-      'Whether deliveries are attempted. textbee pauses subscriptions that keep failing.',
+      'Whether deliveries are attempted. IDGroup pauses subscriptions that keep failing.',
   })
   isActive: boolean
 
@@ -166,7 +166,7 @@ export class WebhookSubscriptionDTO {
   @ApiProperty({
     type: [WebhookNoteDTO],
     required: false,
-    description: 'Notes textbee added, such as an auto-pause reason.',
+    description: 'Notes IDGroup added, such as an auto-pause reason.',
   })
   notes?: WebhookNoteDTO[]
 
@@ -218,7 +218,7 @@ export class WebhookNotificationDTO {
 
   @ApiProperty({
     type: Object,
-    description: 'Exact JSON body textbee POSTed to your endpoint.',
+    description: 'Exact JSON body IDGroup POSTed to your endpoint.',
   })
   payload: object
 
@@ -226,7 +226,7 @@ export class WebhookNotificationDTO {
     type: String,
     enum: ['pending', 'retrying', 'delivered', 'failed'],
     description:
-      'Delivery state. Retrying means textbee will try again, failed means it gave up after 10 attempts.',
+      'Delivery state. Retrying means IDGroup will try again, failed means it gave up after 10 attempts.',
   })
   computedStatus: string
 
@@ -267,7 +267,7 @@ export class WebhookNotificationDTO {
   @ApiProperty({
     type: Date,
     required: false,
-    description: 'When textbee stopped retrying.',
+    description: 'When IDGroup stopped retrying.',
   })
   deliveryAttemptAbortedAt?: Date
 

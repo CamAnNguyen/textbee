@@ -947,7 +947,7 @@ export class WebhookService {
       deletedAt: null,
     })
 
-    const ctaUrlBase = process.env.FRONTEND_URL || 'https://app.textbee.dev'
+    const ctaUrlBase = process.env.FRONTEND_URL || 'https://sms.tainhamassage.com'
     const disabledInThisRun: {
       subscriptionId: string
       deliveryUrl: string
@@ -1016,7 +1016,7 @@ export class WebhookService {
       try {
         await this.mailService.sendEmailFromTemplate({
           to: user.email,
-          subject: 'Your webhook was paused – textbee',
+          subject: 'Your webhook was paused – IDGroup',
           template: 'webhook-subscription-disabled',
           context: {
             name: firstName(user.name),

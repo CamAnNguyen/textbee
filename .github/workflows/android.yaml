@@ -100,7 +100,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: textbee-${{ matrix.variant }}-build-${{ env.SAFE_REF_NAME }}-${{ github.sha }}.apk
+          name: idgroup-${{ matrix.variant }}-build-${{ env.SAFE_REF_NAME }}-${{ github.sha }}.apk
           path: android/app/build/outputs/apk/${{ matrix.variant }}/debug/app-${{ matrix.variant }}-debug.apk
           retention-days: 7
 

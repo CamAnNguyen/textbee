@@ -2,7 +2,7 @@
 
 // Install command with a package manager picker.
 //
-// Kept in sync by hand with the copy in the textbee marketing site. The two live
+// Kept in sync by hand with the copy in the IDGroup marketing site. The two live
 // in separate repos, so a shared package would be more machinery than one small
 // widget is worth. This copy uses theme tokens because the dashboard renders in
 // light and dark, while the marketing snippet block is always dark.
@@ -23,7 +23,7 @@ const MANAGERS = [
 type ManagerId = (typeof MANAGERS)[number]['id']
 
 const DEFAULT_MANAGER: ManagerId = 'pnpm'
-const STORAGE_KEY = 'textbee:package-manager'
+const STORAGE_KEY = 'idgroup:package-manager'
 
 function isManagerId(value: string | null): value is ManagerId {
   return MANAGERS.some((manager) => manager.id === value)
