@@ -64,6 +64,9 @@ services:
       - "3000"
     environment:
       - PORT=3000
+      # Next.js standalone binds to HOSTNAME, which Docker sets to the
+      # container id and resolves to the internal network only.
+      - HOSTNAME=0.0.0.0
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - ADMIN_EMAIL=${ADMIN_EMAIL:-}
