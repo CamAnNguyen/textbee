@@ -97,16 +97,16 @@ export default function CommunityLinks() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Discord</CardTitle>
+            <CardTitle>GitHub Issues</CardTitle>
           </CardHeader>
           <CardContent>
             <p className='text-sm text-muted-foreground mb-4'>
-              Join our community for support and updates.
+              Report bugs or ask questions on GitHub.
             </p>
             <Button asChild className='w-full' variant='outline'>
               <Link href={ExternalLinks.discord} prefetch={false} target='_blank'>
                 <MessageSquare className='mr-2 h-4 w-4' />
-                Join Discord
+                Open GitHub issues
               </Link>
             </Button>
           </CardContent>

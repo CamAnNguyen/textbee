@@ -72,12 +72,12 @@ export const JoinCommunityModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className='sm:max-w-xl'>
         <DialogHeader>
-          <DialogTitle>Join Our Discord Community!</DialogTitle>
+          <DialogTitle>Need help?</DialogTitle>
         </DialogHeader>
 
         <div className='py-4'>
           <p className='text-muted-foreground'>
-            Join our Discord community to connect with other users, get help,
+            Open an issue on GitHub to get help,
             and stay updated with the latest announcements!
           </p>
         </div>
@@ -97,7 +97,7 @@ export const JoinCommunityModal = () => {
             }}
             className='gap-2'
           >
-            Join Discord
+            Open GitHub issues
           </Button>
         </div>
       </DialogContent>

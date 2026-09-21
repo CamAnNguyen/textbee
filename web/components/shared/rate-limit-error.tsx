@@ -18,7 +18,7 @@ function DiscordHelpLine() {
         rel="noopener noreferrer"
         className="font-medium underline underline-offset-2"
       >
-        community on Discord
+        GitHub issues
       </a>
       .
     </p>

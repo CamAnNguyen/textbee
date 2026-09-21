@@ -12,7 +12,7 @@ const links = [
   { label: 'Quick start', href: Routes.quickstart },
   { label: 'Download app', href: Routes.downloadAndroidApp },
   { label: 'Contribute', href: Routes.contribute },
-  { label: 'Discord', href: ExternalLinks.discord },
+  { label: 'Issues', href: ExternalLinks.discord },
   { label: 'Privacy', href: Routes.privacyPolicy },
   { label: 'Terms', href: Routes.termsOfService },
   { label: 'Refund', href: Routes.refundPolicy },

@@ -99,7 +99,7 @@ export default function GetStartedCard() {
               Your SMS gateway is up and running.
             </p>
             <p className='mt-1 text-sm text-muted-foreground'>
-              Join our Discord to share what you're building and get help fast.
+              Open an issue on GitHub if you need help.
             </p>
           </div>
           <div className='flex flex-wrap items-center justify-center gap-2'>

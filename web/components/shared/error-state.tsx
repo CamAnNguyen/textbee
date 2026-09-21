@@ -54,7 +54,7 @@ export default function ErrorState({
           rel='noopener noreferrer'
           className='font-medium text-primary hover:underline'
         >
-          community on Discord
+          GitHub issues
         </a>
         .
       </p>

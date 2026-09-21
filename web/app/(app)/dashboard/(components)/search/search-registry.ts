@@ -186,7 +186,7 @@ export const searchEntries: SearchEntry[] = [
     label: 'Community',
     group: 'Overview',
     icon: Users,
-    description: 'Discord, GitHub and socials',
+    description: 'GitHub and socials',
     keywords: [
       'community',
       'discord',

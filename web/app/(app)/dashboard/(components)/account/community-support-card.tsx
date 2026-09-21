@@ -20,7 +20,7 @@ export default function CommunitySupportCard() {
         <CardTitle>Get help from the community</CardTitle>
         <CardDescription>
           Ask questions and get answers from other IDGroup users and the team on
-          our Discord server. It is often the fastest way to get unblocked.
+          GitHub issues. It is often the fastest way to get unblocked.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -33,7 +33,7 @@ export default function CommunitySupportCard() {
             onClick={markDiscordJoined}
           >
             <MessageSquare className='mr-2 h-4 w-4' />
-            Join the Discord
+            Open GitHub issues
           </Link>
         </Button>
       </CardContent>

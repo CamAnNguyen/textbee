@@ -255,7 +255,7 @@ export default function ContributePage() {
               <Button variant='outline' asChild>
                 <Link href={ExternalLinks.discord} target='_blank'>
                   <MessageSquare className='mr-2 h-4 w-4' />
-                  Join Discord
+                  Open GitHub issues
                 </Link>
               </Button>
               <Button variant='outline' asChild>

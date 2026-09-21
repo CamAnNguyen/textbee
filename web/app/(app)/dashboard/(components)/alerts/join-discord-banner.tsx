@@ -33,8 +33,7 @@ export default function JoinDiscordBanner() {
     <Alert className='bg-linear-to-r from-brand-500 to-brand-600 text-white'>
       <AlertDescription className='flex flex-col items-center gap-2 sm:flex-row md:gap-4'>
         <span className='w-full text-center text-sm font-medium sm:flex-1 sm:text-left md:text-base'>
-          Questions or feedback? Get quick answers from the IDGroup community on
-          Discord.
+          Questions or feedback? Open an issue on GitHub.
         </span>
         <div className='mt-2 flex w-full items-center justify-center gap-2 sm:mt-0 sm:w-auto sm:justify-end'>
           <Button
@@ -47,11 +46,11 @@ export default function JoinDiscordBanner() {
             }}
           >
             <MessageSquare className='mr-2 h-4 w-4' />
-            Join Discord
+            Open GitHub issues
           </Button>
           <button
             type='button'
-            aria-label='Dismiss Discord invitation'
+            aria-label='Dismiss support invitation'
             onClick={hide}
             className='rounded-md p-1 text-white/80 transition-colors hover:bg-white/15 hover:text-white focus:outline-none focus:ring-2 focus:ring-white'
           >
