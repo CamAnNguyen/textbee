@@ -164,7 +164,8 @@ class OnboardingViewModel : ViewModel() {
                                 429 -> response.serverErrorMessage()
                                     ?: "You've reached your plan's device limit. Disable or remove another device, or upgrade your plan."
                                 in 500..599 -> "Server error. Please try again in a moment."
-                                else -> "Request failed (${response.code()}). Please try again."
+                                else -> response.serverErrorMessage()
+                                    ?: "Request failed (${response.code()}). Please try again."
                             }
                         )
                     }

@@ -10,7 +10,9 @@ import retrofit2.Response
 fun Response<*>.serverErrorMessage(): String? {
     val raw = errorBody()?.string()?.takeIf { it.isNotBlank() } ?: return null
     return try {
-        JSONObject(raw).optString("message").takeIf { it.isNotBlank() }
+        val body = JSONObject(raw)
+        body.optString("message").takeIf { it.isNotBlank() }
+            ?: body.optString("error").takeIf { it.isNotBlank() }
     } catch (e: Exception) {
         null
     }
